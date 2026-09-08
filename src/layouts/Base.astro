@@ -1,0 +1,434 @@
+---
+import '../styles/global.css';
+import site from '../data/site.json';
+
+interface Props {
+  title: string;
+  description: string;
+  schema?: object | object[];
+  canonicalPath?: string;
+}
+
+const { title, description, schema, canonicalPath = Astro.url.pathname } = Astro.props;
+const canonical = `${site.brand.siteUrl}${canonicalPath}`;
+const schemaArray = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <title>{title} | Elite Lawn Care & Junk Removal — San Antonio, TX</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content={`${site.brand.siteUrl}/images/logo.jpg`} />
+
+  <!-- Schema -->
+  {schemaArray.map(s => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))}
+
+  <!-- Favicon placeholder -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="site-header" id="top">
+    <nav class="nav container">
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li class="has-dropdown">
+          <a href="/services">Services</a>
+          <ul class="dropdown">
+            {site.services.map(s => (
+              <li><a href={`/services/${s.slug}`}>{s.name}</a></li>
+            ))}
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <a href="/areas">Service Areas</a>
+          <ul class="dropdown dropdown--wide">
+            {site.areas.map(a => (
+              <li><a href={`/areas/${a.slug}`}>{a.name}</a></li>
+            ))}
+          </ul>
+        </li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li>
+          <a href={`tel:${site.brand.phonePlain}`} class="btn btn--primary nav__cta">
+            📞 {site.brand.phone}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top container">
+      <div class="footer__brand">
+        <img src="/images/logo.png" alt="Elite Lawn Care & Junk Removal" width="200" height="133" />
+        <p class="footer__tagline">{site.brand.tagline}</p>
+        <div class="footer__contact">
+          <a href={`tel:${site.brand.phonePlain}`}>{site.brand.phone}</a>
+          <a href={`tel:${site.brand.phone2Plain}`}>{site.brand.phone2}</a>
+          <a href={`mailto:${site.brand.email}`}>{site.brand.email}</a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>Services</h4>
+        <ul>
+          {site.services.map(s => (
+            <li><a href={`/services/${s.slug}`}>{s.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Service Areas</h4>
+        <ul class="footer__areas">
+          {site.areas.map(a => (
+            <li><a href={`/areas/${a.slug}`}>{a.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/services">All Services</a></li>
+          <li><a href="/areas">All Service Areas</a></li>
+        </ul>
+        <a href="/contact" class="btn btn--primary" style="margin-top:1.5rem">Free Estimate</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container">
+        <p>&copy; {new Date().getFullYear()} Elite Lawn Care & Junk Removal. All rights reserved. Serving San Antonio, TX and surrounding areas.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle?.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      links?.classList.toggle('nav__links--open');
+    });
+
+    // Sticky header
+    const header = document.getElementById('top');
+    window.addEventListener('scroll', () => {
+      header?.classList.toggle('site-header--scrolled', window.scrollY > 60);
+    });
+  </script>
+</body>
+</html>
+
+<style>
+/* === HEADER / NAV === */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border-dark);
+  transition: box-shadow 0.3s ease;
+}
+
+.site-header--scrolled {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.nav__logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-light);
+  line-height: 1;
+}
+
+.nav__logo-accent {
+  color: var(--color-primary);
+}
+
+.nav__links {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-bg);
+  padding: 1.5rem;
+  border-top: 1px solid var(--color-border-dark);
+  gap: 0.5rem;
+}
+
+.nav__links--open {
+  display: flex;
+}
+
+.nav__links li > a:not(.btn) {
+  display: block;
+  padding: 0.5rem 0;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-light);
+  transition: color var(--transition);
+}
+
+.nav__links li > a:not(.btn):hover {
+  color: var(--color-primary);
+}
+
+.nav__cta {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.nav__toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav__toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text-light);
+  transition: all 0.3s ease;
+}
+
+.nav__toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.nav__toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.nav__toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.dropdown {
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-border-dark);
+  margin-top: 0.25rem;
+}
+
+.dropdown li a {
+  font-size: 0.8rem !important;
+  padding: 0.3rem 0 !important;
+  color: var(--color-text-muted) !important;
+}
+
+.dropdown li a:hover {
+  color: var(--color-primary) !important;
+}
+
+@media (min-width: 1024px) {
+  .nav__toggle { display: none; }
+
+  .nav__links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    position: static;
+    background: transparent;
+    border: none;
+    padding: 0;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .nav__links li > a:not(.btn) {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .has-dropdown {
+    position: relative;
+  }
+
+  .has-dropdown .dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    background: var(--color-surface-dark);
+    border: 1px solid var(--color-border-dark);
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    min-width: 180px;
+    box-shadow: var(--shadow-elevated);
+    border-left: none;
+    margin-top: 0;
+    z-index: 200;
+  }
+
+  .dropdown--wide {
+    min-width: 220px;
+    columns: 2;
+    column-gap: 0.5rem;
+  }
+
+  .has-dropdown:hover .dropdown,
+  .has-dropdown:focus-within .dropdown {
+    display: block;
+  }
+
+  .dropdown li a {
+    display: block;
+    padding: 0.35rem 0.5rem !important;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    font-size: 0.8rem !important;
+  }
+
+  .dropdown li a:hover {
+    background: var(--color-border-dark);
+  }
+
+  .nav__cta { margin-top: 0; }
+}
+
+/* === FOOTER === */
+.footer {
+  background: var(--color-bg-deeper);
+  border-top: 3px solid var(--color-primary);
+  color: var(--color-text-light);
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  padding: 4rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .footer__top { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .footer__top { grid-template-columns: 1.5fr 1fr 1.5fr 1fr; }
+}
+
+.footer__brand img {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0;
+  margin-bottom: 1rem;
+}
+
+.footer__tagline {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer__contact a {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  transition: color var(--transition);
+}
+
+.footer__contact a:hover { color: var(--color-primary); }
+
+.footer__col h4 {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.footer__col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer__col ul a {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  transition: color var(--transition);
+}
+
+.footer__col ul a:hover { color: var(--color-text-light); }
+
+.footer__areas {
+  columns: 2;
+  column-gap: 1rem;
+}
+
+.footer__bottom {
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border-dark);
+  padding: 1.25rem 0;
+  text-align: center;
+}
+
+.footer__bottom p {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+</style>

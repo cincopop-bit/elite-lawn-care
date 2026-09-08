@@ -1,0 +1,144 @@
+---
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "LandscapingBusiness",
+    "name": "Elite Lawn Care & Junk Removal",
+    "url": "https://elitelawncaresa.com",
+    "telephone": "(210) 997-7525",
+    "email": "elitelawncaresa@gmail.com",
+    "areaServed": {
+      "@type": "City",
+      "name": "Alamo Heights",
+      "addressRegion": "TX"
+    },
+    "description": "Elite serves Alamo Heights with premium lawn care, mature tree management, and landscape services for the historic inner-loop enclave."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://elitelawncaresa.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Service Areas",
+        "item": "https://elitelawncaresa.com/areas"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Alamo Heights",
+        "item": "https://elitelawncaresa.com/areas/alamo-heights"
+      }
+    ]
+  }
+];
+---
+
+<Base
+  title="Lawn Care & Junk Removal Alamo Heights, TX"
+  description="Elite serves Alamo Heights with premium lawn care, mature tree management, and landscape services for the historic inner-loop enclave."
+  schema={schema}
+  canonicalPath="/areas/alamo-heights"
+>
+
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb__sep">›</span>
+        <a href="/areas">Service Areas</a>
+        <span class="breadcrumb__sep">›</span>
+        <span>Alamo Heights</span>
+      </nav>
+      <span class="page-hero__eyebrow">Service Area</span>
+      <h1 class="page-hero__title">Lawn Care & Junk Removal Alamo Heights, TX</h1>
+      <p class="page-hero__desc">Elite serves Alamo Heights with premium lawn care, mature tree management, and landscape services for the historic inner-loop enclave.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="/contact" class="btn btn--primary">Get a Free Estimate</a>
+        <a href="tel:2109977525" class="btn btn--outline-white">📞 (210) 997-7525</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="section section--surface">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="section-header__eyebrow">Serving Alamo Heights, TX</span>
+          <h2 style="margin-bottom:1rem">Elite in Alamo Heights</h2>
+          <p>Alamo Heights is defined by its historic architecture, tree-lined streets, and exacting standards. The live oaks and pecans in this neighborhood are irreplaceable assets — some over 100 years old — and they deserve a crew that understands how to care for them properly.</p>
+          <p>Elite delivers the white-glove service that Alamo Heights properties demand. Precision edging, clean bed work, professional tree care, and a crew that leaves the property looking better than they found it — every visit.</p>
+          <ul class="check-list" style="margin-top:1.5rem">
+            <li>Mature live oak and pecan crown cleaning</li>
+            <li>Precision landscape bed trimming and edging</li>
+            <li>Pre-listing property preparation for high-value sales</li>
+            <li>Invasive ligustrum and privet removal</li>
+            <li>Seasonal cleanup and leaf removal</li>
+            <li>Estate-grade service on urban lots</li>
+          </ul>
+        </div>
+        <div class="side-photo">
+          <img src="/images/work-1.jpg" alt="Lawn care service in Alamo Heights, TX" />
+          <div class="contact-card">
+            <h3>Get a Free Estimate in Alamo Heights</h3>
+            <p>Call or text — we respond fast.</p>
+            <a href="tel:2109977525" class="btn btn--primary" style="width:100%;text-align:center;margin-bottom:.75rem">📞 (210) 997-7525</a>
+            <a href="/contact" class="btn btn--outline" style="width:100%;text-align:center">Send a Message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">All Services in Alamo Heights</span>
+        <h2 class="section-header__title">What Elite Does in Alamo Heights</h2>
+      </div>
+      <div class="grid-3">
+        {site.services.map(s => (
+          <a href={`/services/${s.slug}`} class="card card--dark" style="text-decoration:none">
+            <span class="card__icon">{s.icon}</span>
+            <h3 class="card__title">{s.name}</h3>
+            <p class="card__desc">{s.shortDesc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface-mid">
+    <div class="container">
+      <p style="color:var(--color-text-muted);font-size:.95rem;max-width:700px">We serve all of Alamo Heights (78209) including the historic neighborhoods adjacent to Broadway, Olmos Park, and surrounding affluent inner-loop enclaves.</p>
+    </div>
+  </section>
+
+  <div class="cta-strip">
+    <div class="container">
+      <h2 class="cta-strip__title">Ready to Get Started in Alamo Heights?</h2>
+      <p class="cta-strip__desc">Call for a free estimate. We respond fast — usually same day.</p>
+      <a href="tel:2109977525" class="btn btn--primary btn--lg">📞 (210) 997-7525</a>
+    </div>
+  </div>
+
+</Base>
+
+<style>
+.two-col { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start; }
+@media (min-width: 768px) { .two-col { grid-template-columns: 1fr 1fr; } }
+.side-photo img { width: 100%; height: 280px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: 1.5rem; }
+.contact-card { background: var(--color-text-light); padding: 1.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); border-top: 3px solid var(--color-primary); }
+.contact-card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+.contact-card p { color: var(--color-text-muted-dark); font-size: .9rem; margin-bottom: 1rem; }
+</style>

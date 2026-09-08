@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Tree Trimming San Antonio TX",
+    "provider": { "@type": "LandscapingBusiness", "name": site.brand.name, "telephone": site.brand.phone },
+    "areaServed": site.areas.map(a => ({ "@type": "City", "name": a.name, "addressRegion": "TX" })),
+    "serviceType": "Tree Trimming and Pruning",
+    "description": "Professional tree trimming and pruning services in San Antonio TX. We handle live oaks, cedar, pecan, and all South Texas tree species. Free estimates."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": site.brand.siteUrl },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": `${site.brand.siteUrl}/services` },
+      { "@type": "ListItem", "position": 3, "name": "Tree Trimming", "item": `${site.brand.siteUrl}/services/tree-trimming` }
+    ]
+  }
+];
+---
+
+<Base title="Tree Trimming San Antonio TX" description="Professional tree trimming and pruning in San Antonio, TX. Live oaks, cedar, pecan, and all South Texas species. Fast response, free estimates. Call (210) 997-7525." schema={schema} canonicalPath="/services/tree-trimming">
+
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="/">Home</a><span class="breadcrumb__sep">›</span><a href="/services">Services</a><span class="breadcrumb__sep">›</span><span>Tree Trimming</span></nav>
+      <span class="page-hero__eyebrow">Tree Services</span>
+      <h1 class="page-hero__title">Tree Trimming San Antonio, TX</h1>
+      <p class="page-hero__desc">Proper pruning keeps your trees healthy, your property safe, and your yard looking sharp. Elite handles everything from routine crown cleaning to emergency limb removal.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="/contact" class="btn btn--primary">Get a Free Estimate</a>
+        <a href={`tel:${site.brand.phonePlain}`} class="btn btn--outline-white">📞 {site.brand.phone}</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="section section--surface">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="section-header__eyebrow">What's Included</span>
+          <h2 style="margin-bottom:1rem">Tree Trimming Done Right</h2>
+          <p>San Antonio's landscape is defined by live oaks, cedar elms, pecans, and Ashe juniper. Each species has different growth habits, seasonal needs, and trimming requirements. Elite's crew understands South Texas trees — we don't just cut, we prune for long-term health and structural integrity.</p>
+          <p>Whether you have a 100-year-old live oak hanging over your roof or a cedar line overtaking your back fence, we have the equipment and the experience to handle it safely and completely.</p>
+          <ul class="check-list" style="margin-top:1.5rem">
+            <li>Crown cleaning and deadwood removal</li>
+            <li>Canopy elevation (raising limbs over structures and driveways)</li>
+            <li>Cedar and brush clearing</li>
+            <li>Storm-damaged limb removal</li>
+            <li>Shape trimming for ornamental trees and shrubs</li>
+            <li>Full debris haul-off included</li>
+            <li>Emergency same-day response available</li>
+          </ul>
+        </div>
+        <div>
+          <img src="/images/work-1.jpg" alt="Tree and shrub trimming in San Antonio backyard" style="width:100%;height:400px;object-fit:cover;border-radius:16px" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">Service Areas</span>
+        <h2 class="section-header__title">Tree Trimming Across San Antonio</h2>
+      </div>
+      <div class="areas-grid">
+        {site.areas.map(a => (<a href={`/areas/${a.slug}`} class="area-chip">{a.name}</a>))}
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-strip">
+    <div class="container">
+      <h2 class="cta-strip__title">Need a Tree Handled?</h2>
+      <p class="cta-strip__desc">Call now for a same-day estimate. We'll take a look and tell you exactly what it needs.</p>
+      <a href={`tel:${site.brand.phonePlain}`} class="btn btn--primary btn--lg">📞 {site.brand.phone}</a>
+    </div>
+  </div>
+</Base>
+
+<style>
+.two-col { display:grid;grid-template-columns:1fr;gap:3rem;align-items:center }
+@media(min-width:768px){.two-col{grid-template-columns:1fr 1fr}}
+.areas-grid{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
+.area-chip{display:inline-block;padding:.5rem 1.25rem;background:var(--color-surface-dark);border:1px solid var(--color-border-dark);border-radius:var(--radius-pill);color:var(--color-text-muted);font-family:var(--font-heading);font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;transition:all var(--transition);text-decoration:none}
+.area-chip:hover{background:var(--color-primary);color:var(--color-bg);border-color:var(--color-primary)}
+</style>

@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+const schema=[{"@context":"https://schema.org","@type":"Service","name":"Haul Off Service San Antonio TX","provider":{"@type":"LandscapingBusiness","name":site.brand.name,"telephone":site.brand.phone},"areaServed":site.areas.map(a=>({"@type":"City","name":a.name,"addressRegion":"TX"})),"serviceType":"Green Waste Haul Off","description":"Green waste and debris haul-off service in San Antonio TX. We remove clippings, branches, brush, and yard waste after any job. Free estimates."},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":site.brand.siteUrl},{"@type":"ListItem","position":2,"name":"Services","item":`${site.brand.siteUrl}/services`},{"@type":"ListItem","position":3,"name":"Haul Off","item":`${site.brand.siteUrl}/services/haul-off`}]}];
+---
+<Base title="Haul Off Service San Antonio TX" description="Green waste and debris haul-off in San Antonio TX. Branches, clippings, brush, and yard waste removed fast. Residential and commercial. Call (210) 997-7525." schema={schema} canonicalPath="/services/haul-off">
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="/">Home</a><span class="breadcrumb__sep">›</span><a href="/services">Services</a><span class="breadcrumb__sep">›</span><span>Haul Off</span></nav>
+      <span class="page-hero__eyebrow">Haul Off Services</span>
+      <h1 class="page-hero__title">Haul Off Service San Antonio, TX</h1>
+      <p class="page-hero__desc">When the job is done, the mess is gone. Elite removes all green waste, branches, brush, and debris — so your property is clean when we leave.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap"><a href="/contact" class="btn btn--primary">Get a Free Estimate</a><a href={`tel:${site.brand.phonePlain}`} class="btn btn--outline-white">📞 {site.brand.phone}</a></div>
+    </div>
+  </div>
+  <section class="section section--surface">
+    <div class="container">
+      <h2 style="margin-bottom:1rem;text-align:center">We Don't Leave a Mess Behind</h2>
+      <p style="text-align:center;max-width:700px;margin:0 auto 3rem;color:var(--color-text-muted-dark)">A lot of crews do the work and leave debris piled at the curb. Elite loads it and hauls it — every time. That's included in every job, and it's also a standalone service if you already have a pile waiting.</p>
+      <div class="grid-3">
+        {[["🌿","Green Waste Haul-Off","Grass clippings, leaves, branches, and trimmings removed after mowing, trimming, or landscaping."],["🪵","Brush & Branch Removal","Storm debris, fallen limbs, and brush piles from clearing projects — loaded and removed."],["🏠","Cleanout Haul-Off","Yard cleanouts, garage edges, and outdoor storage areas cleared and hauled away."]].map(([icon,title,desc]) => (
+          <div class="card">
+            <span class="card__icon">{icon}</span>
+            <h3 class="card__title">{title}</h3>
+            <p class="card__desc">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <div class="cta-strip">
+    <div class="container">
+      <h2 class="cta-strip__title">Got a Pile That Needs to Go?</h2>
+      <p class="cta-strip__desc">Call us. We'll give you a quick quote and get it cleared.</p>
+      <a href={`tel:${site.brand.phonePlain}`} class="btn btn--primary btn--lg">📞 {site.brand.phone}</a>
+    </div>
+  </div>
+</Base>

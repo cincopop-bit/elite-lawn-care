@@ -1,0 +1,144 @@
+---
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "LandscapingBusiness",
+    "name": "Elite Lawn Care & Junk Removal",
+    "url": "https://elitelawncaresa.com",
+    "telephone": "(210) 997-7525",
+    "email": "elitelawncaresa@gmail.com",
+    "areaServed": {
+      "@type": "City",
+      "name": "Bulverde",
+      "addressRegion": "TX"
+    },
+    "description": "Elite serves Bulverde with professional lawn care, cedar management, and junk removal for Hill Country properties and master-planned communities."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://elitelawncaresa.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Service Areas",
+        "item": "https://elitelawncaresa.com/areas"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Bulverde",
+        "item": "https://elitelawncaresa.com/areas/bulverde"
+      }
+    ]
+  }
+];
+---
+
+<Base
+  title="Lawn Care & Junk Removal Bulverde, TX"
+  description="Elite serves Bulverde with professional lawn care, cedar management, and junk removal for Hill Country properties and master-planned communities."
+  schema={schema}
+  canonicalPath="/areas/bulverde"
+>
+
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb__sep">›</span>
+        <a href="/areas">Service Areas</a>
+        <span class="breadcrumb__sep">›</span>
+        <span>Bulverde</span>
+      </nav>
+      <span class="page-hero__eyebrow">Service Area</span>
+      <h1 class="page-hero__title">Lawn Care & Junk Removal Bulverde, TX</h1>
+      <p class="page-hero__desc">Elite serves Bulverde with professional lawn care, cedar management, and junk removal for Hill Country properties and master-planned communities.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="/contact" class="btn btn--primary">Get a Free Estimate</a>
+        <a href="tel:2109977525" class="btn btn--outline-white">📞 (210) 997-7525</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="section section--surface">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="section-header__eyebrow">Serving Bulverde, TX</span>
+          <h2 style="margin-bottom:1rem">Elite in Bulverde</h2>
+          <p>Bulverde is growing faster than almost anywhere in Texas — and that growth means demand for reliable, professional lawn care that most local crews can't keep up with. Elite has the capacity and the equipment to serve Bulverde's mix of new construction and established Hill Country properties.</p>
+          <p>Whether you're in a new Johnson Ranch development needing recurring maintenance or a longtime Bulverde homeowner managing cedar encroachment on a few acres, Elite brings the right crew for the job.</p>
+          <ul class="check-list" style="margin-top:1.5rem">
+            <li>Cedar and Ashe juniper clearing</li>
+            <li>Large lot mowing with commercial equipment</li>
+            <li>New construction lot establishment and cleanup</li>
+            <li>HOA-compliant maintenance for master-planned communities</li>
+            <li>Junk removal and construction debris haul-off</li>
+            <li>Hill Country terrain mowing on rocky limestone lots</li>
+          </ul>
+        </div>
+        <div class="side-photo">
+          <img src="/images/work-1.jpg" alt="Lawn care service in Bulverde, TX" />
+          <div class="contact-card">
+            <h3>Get a Free Estimate in Bulverde</h3>
+            <p>Call or text — we respond fast.</p>
+            <a href="tel:2109977525" class="btn btn--primary" style="width:100%;text-align:center;margin-bottom:.75rem">📞 (210) 997-7525</a>
+            <a href="/contact" class="btn btn--outline" style="width:100%;text-align:center">Send a Message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">All Services in Bulverde</span>
+        <h2 class="section-header__title">What Elite Does in Bulverde</h2>
+      </div>
+      <div class="grid-3">
+        {site.services.map(s => (
+          <a href={`/services/${s.slug}`} class="card card--dark" style="text-decoration:none">
+            <span class="card__icon">{s.icon}</span>
+            <h3 class="card__title">{s.name}</h3>
+            <p class="card__desc">{s.shortDesc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface-mid">
+    <div class="container">
+      <p style="color:var(--color-text-muted);font-size:.95rem;max-width:700px">We serve all of Bulverde including Spring Branch Crossing, Johnson Ranch, and surrounding Comal County communities.</p>
+    </div>
+  </section>
+
+  <div class="cta-strip">
+    <div class="container">
+      <h2 class="cta-strip__title">Ready to Get Started in Bulverde?</h2>
+      <p class="cta-strip__desc">Call for a free estimate. We respond fast — usually same day.</p>
+      <a href="tel:2109977525" class="btn btn--primary btn--lg">📞 (210) 997-7525</a>
+    </div>
+  </div>
+
+</Base>
+
+<style>
+.two-col { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start; }
+@media (min-width: 768px) { .two-col { grid-template-columns: 1fr 1fr; } }
+.side-photo img { width: 100%; height: 280px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: 1.5rem; }
+.contact-card { background: var(--color-text-light); padding: 1.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); border-top: 3px solid var(--color-primary); }
+.contact-card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+.contact-card p { color: var(--color-text-muted-dark); font-size: .9rem; margin-bottom: 1rem; }
+</style>

@@ -1,0 +1,127 @@
+---
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Service Areas — Elite Lawn Care & Junk Removal",
+  "description": "Elite Lawn Care & Junk Removal serves San Antonio and 15 surrounding communities including Boerne, Helotes, New Braunfels, and more.",
+  "url": `${site.brand.siteUrl}/areas`,
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": site.brand.siteUrl },
+      { "@type": "ListItem", "position": 2, "name": "Service Areas", "item": `${site.brand.siteUrl}/areas` }
+    ]
+  }
+};
+---
+
+<Base
+  title="Service Areas — San Antonio & Surrounding Communities"
+  description="Elite Lawn Care & Junk Removal serves San Antonio and surrounding cities including Boerne, Helotes, New Braunfels, Alamo Heights, and more. Free estimates."
+  schema={schema}
+  canonicalPath="/areas"
+>
+
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb__sep">›</span>
+        <span>Service Areas</span>
+      </nav>
+      <span class="page-hero__eyebrow">Where We Work</span>
+      <h1 class="page-hero__title">Serving Greater San Antonio</h1>
+      <p class="page-hero__desc">From the Hill Country communities to the east side suburbs — Elite covers the full San Antonio metro. Select your city below to see local service details.</p>
+    </div>
+  </div>
+
+  <section class="section section--surface">
+    <div class="container">
+      <div class="areas-list">
+        {site.areas.map(a => (
+          <a href={`/areas/${a.slug}`} class="area-card">
+            <div class="area-card__icon">📍</div>
+            <div class="area-card__body">
+              <h2 class="area-card__name">{a.name}, TX</h2>
+              <p class="area-card__sub">Lawn Care &amp; Junk Removal</p>
+            </div>
+            <span class="area-card__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-strip">
+    <div class="container">
+      <h2 class="cta-strip__title">Don't See Your City?</h2>
+      <p class="cta-strip__desc">Call us. Our service area is always expanding — if you're near San Antonio, there's a good chance we can help.</p>
+      <a href={`tel:${site.brand.phonePlain}`} class="btn btn--primary btn--lg">📞 {site.brand.phone}</a>
+    </div>
+  </div>
+
+</Base>
+
+<style>
+.areas-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .areas-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .areas-list { grid-template-columns: repeat(3, 1fr); }
+}
+
+.area-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--color-text-light);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid transparent;
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.area-card:hover {
+  border-left-color: var(--color-primary);
+  box-shadow: var(--shadow-elevated);
+  transform: translateX(4px);
+}
+
+.area-card__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.area-card__body { flex: 1; }
+
+.area-card__name {
+  font-size: 1rem;
+  color: var(--color-text-dark);
+  margin-bottom: 0.1rem;
+  font-family: var(--font-heading);
+}
+
+.area-card__sub {
+  font-size: 0.8rem;
+  color: var(--color-text-muted-dark);
+  margin: 0;
+}
+
+.area-card__arrow {
+  color: var(--color-primary);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+</style>

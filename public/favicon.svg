@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#111111"/>
+  <!-- Leaf / blade of grass shape -->
+  <path d="M16 26 C16 26 8 18 8 12 C8 7 12 4 16 4 C20 4 24 7 24 12 C24 18 16 26 16 26Z" fill="#6BBF00"/>
+  <path d="M16 26 C16 26 12 18 12 12 C12 8 14 4 16 4 C16 4 16 26 16 26Z" fill="#4E8C00" opacity="0.6"/>
+</svg>

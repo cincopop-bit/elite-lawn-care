@@ -1,0 +1,74 @@
+{
+  "brand": {
+    "name": "Elite Lawn Care & Junk Removal",
+    "shortName": "Elite Lawn Care",
+    "tagline": "We Work Hard • We Show Up • You Relax",
+    "tagline2": "We Do It All!",
+    "phone": "(210) 997-7525",
+    "phonePlain": "2109977525",
+    "phone2": "(210) 718-1224",
+    "phone2Plain": "2107181224",
+    "email": "elitelawncaresa@gmail.com",
+    "city": "San Antonio",
+    "state": "TX",
+    "stateFullName": "Texas",
+    "serviceAreaDescription": "Proudly serving San Antonio and surrounding communities",
+    "siteUrl": "https://elitelawncaresa.com"
+  },
+  "services": [
+    {
+      "name": "Tree Trimming",
+      "slug": "tree-trimming",
+      "icon": "🌳",
+      "shortDesc": "Professional tree trimming and pruning to keep your trees healthy and your property safe."
+    },
+    {
+      "name": "Landscaping",
+      "slug": "landscaping",
+      "icon": "🌿",
+      "shortDesc": "Full-service landscaping including bed work, edging, mulching, and shrub trimming."
+    },
+    {
+      "name": "Haul Off",
+      "slug": "haul-off",
+      "icon": "🚛",
+      "shortDesc": "Green waste and debris haul-off after any job — we clean up and clear out completely."
+    },
+    {
+      "name": "Junk Removal",
+      "slug": "junk-removal",
+      "icon": "🗑️",
+      "shortDesc": "Fast, full-service junk removal for homes, garages, and properties of any size."
+    },
+    {
+      "name": "Emergency Services",
+      "slug": "emergency-services",
+      "icon": "⚡",
+      "shortDesc": "Same-day emergency response for storm damage, fallen trees, and urgent cleanup needs."
+    }
+  ],
+  "areas": [
+    { "name": "San Antonio", "slug": "san-antonio" },
+    { "name": "Boerne", "slug": "boerne" },
+    { "name": "Helotes", "slug": "helotes" },
+    { "name": "Fair Oaks Ranch", "slug": "fair-oaks-ranch" },
+    { "name": "Alamo Ranch", "slug": "alamo-ranch" },
+    { "name": "Castroville", "slug": "castroville" },
+    { "name": "Medina Lake", "slug": "medina-lake" },
+    { "name": "Bulverde", "slug": "bulverde" },
+    { "name": "New Braunfels", "slug": "new-braunfels" },
+    { "name": "Converse", "slug": "converse" },
+    { "name": "Kirby", "slug": "kirby" },
+    { "name": "Alamo Heights", "slug": "alamo-heights" },
+    { "name": "Leon Valley", "slug": "leon-valley" },
+    { "name": "Leon Springs", "slug": "leon-springs" },
+    { "name": "Hollywood Park", "slug": "hollywood-park" },
+    { "name": "Timberwood Park", "slug": "timberwood-park" }
+  ],
+  "trustStats": [
+    { "value": "500+", "label": "Jobs Completed" },
+    { "value": "Same-Day", "label": "Emergency Response" },
+    { "value": "Free", "label": "Estimates" },
+    { "value": "5★", "label": "Rated Service" }
+  ]
+}

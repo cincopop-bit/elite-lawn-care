@@ -1,0 +1,281 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Elite Lawn Care & Junk Removal",
+  "description": "Learn about Elite Lawn Care & Junk Removal — San Antonio's trusted crew for lawn care, tree trimming, and junk removal. Professional, reliable, and licensed.",
+  "url": `${site.brand.siteUrl}/about`,
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": site.brand.siteUrl },
+      { "@type": "ListItem", "position": 2, "name": "About", "item": `${site.brand.siteUrl}/about` }
+    ]
+  },
+  "mainEntity": {
+    "@type": "LandscapingBusiness",
+    "name": site.brand.name,
+    "telephone": site.brand.phone,
+    "email": site.brand.email,
+    "areaServed": site.areas.map(a => ({ "@type": "City", "name": a.name, "addressRegion": "TX" })),
+    "description": "Elite Lawn Care & Junk Removal is San Antonio's trusted crew for tree trimming, landscaping, haul-off, junk removal, and emergency outdoor services.",
+    "openingHours": "Mo-Sa 07:00-19:00"
+  }
+};
+---
+
+<Base
+  title="About Us — Elite Lawn Care & Junk Removal"
+  description="Elite Lawn Care & Junk Removal is built on one promise: show up, do the job right, and leave every property looking better than we found it. Serving San Antonio and surrounding areas."
+  schema={schema}
+  canonicalPath="/about"
+>
+
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb__sep">›</span>
+        <span>About Us</span>
+      </nav>
+      <span class="page-hero__eyebrow">Our Story</span>
+      <h1 class="page-hero__title">Built on One Promise</h1>
+      <p class="page-hero__desc">Show up. Do the job right. Leave every property better than we found it. That's it. That's Elite.</p>
+    </div>
+  </div>
+
+  <!-- STORY SECTION -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <div class="accent-line"></div>
+          <h2 class="about-content__title">A Crew You Can Actually Count On</h2>
+          <p>Elite Lawn Care & Junk Removal was built out of frustration with how most lawn crews operate — taking deposits, not showing up, leaving jobs halfway done. We decided to do things differently.</p>
+          <p>We serve San Antonio and {site.areas.length - 1} surrounding communities because we know this area. We grew up here. We know the neighborhoods, the heat, the Hill Country clay, the cedar and live oak that grows back the moment you look away.</p>
+          <p>Every job — whether it's a weekly mow, a full property cleanout, or an emergency storm call — gets the same treatment: a professional crew, proper equipment, and a site cleaned up before we leave.</p>
+          <p>Two phone numbers. Someone always picks up. That's not a promise most crews can make. We can.</p>
+          <div class="about-phones">
+            <a href={`tel:${site.brand.phonePlain}`} class="btn btn--primary">📞 {site.brand.phone}</a>
+            <a href={`tel:${site.brand.phone2Plain}`} class="btn btn--outline">{site.brand.phone2}</a>
+          </div>
+        </div>
+        <div class="about-photos">
+          <img src="/images/work-1.jpg" alt="Elite Lawn Care crew trimming shrubs in San Antonio" class="about-photos__main" />
+          <div class="about-photos__row">
+            <img src="/images/work-2.jpg" alt="Hedge trimming along fence line" />
+            <img src="/images/work-3.jpg" alt="Pristine lawn after Elite service" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">What We Stand For</span>
+        <h2 class="section-header__title">How We Work</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card card--dark">
+          <span class="card__icon">📍</span>
+          <h3 class="card__title">We Show Up</h3>
+          <p class="card__desc">Scheduled time means we're there at that time — not a 4-hour window, not a vague "sometime Tuesday." We respect your schedule the way we'd want ours respected.</p>
+        </div>
+        <div class="card card--dark">
+          <span class="card__icon">✅</span>
+          <h3 class="card__title">We Do It Right</h3>
+          <p class="card__desc">Every job has a standard. We don't cut corners on lawn edges, leave branches half-trimmed, or haul off 80% of the junk. Done means done — to our standard, not the bare minimum.</p>
+        </div>
+        <div class="card card--dark">
+          <span class="card__icon">🧹</span>
+          <h3 class="card__title">We Leave It Clean</h3>
+          <p class="card__desc">Full cleanup is part of every job. Clippings, debris, hauled materials — all of it gone before we leave. Your property should look better after we're there, not just different.</p>
+        </div>
+        <div class="card card--dark">
+          <span class="card__icon">📞</span>
+          <h3 class="card__title">Someone Always Answers</h3>
+          <p class="card__desc">Two lines, always staffed. Emergency at 7pm on a Friday? We pick up. Question about your quote? We call back same day. Communication shouldn't be the hard part of hiring a crew.</p>
+        </div>
+        <div class="card card--dark">
+          <span class="card__icon">🏡</span>
+          <h3 class="card__title">Residential & Commercial</h3>
+          <p class="card__desc">We work for homeowners, landlords, and property managers across the San Antonio metro. Regular contracts or one-time jobs — we handle both without a complicated process.</p>
+        </div>
+        <div class="card card--dark">
+          <span class="card__icon">⚡</span>
+          <h3 class="card__title">Same-Day Emergency Response</h3>
+          <p class="card__desc">Storm downed a tree across your driveway? Tenant moving out and left a mess? We can often respond same day for urgent situations. Call and we'll tell you honestly what we can do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-bar__grid">
+        {site.trustStats.map(s => (
+          <div class="trust-item">
+            <span class="trust-item__value">{s.value}</span>
+            <span class="trust-item__label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICE AREAS -->
+  <section class="section section--surface-mid">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">Where We Work</span>
+        <h2 class="section-header__title">Serving Greater San Antonio</h2>
+        <p class="section-header__desc" style="color:var(--color-text-muted)">{site.brand.serviceAreaDescription}</p>
+      </div>
+      <div class="areas-grid">
+        {site.areas.map(a => (
+          <a href={`/areas/${a.slug}`} class="area-chip">{a.name}</a>
+        ))}
+      </div>
+      <div class="text-center" style="margin-top:2.5rem">
+        <a href="/areas" class="btn btn--outline">View All Service Areas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">What We Do</span>
+        <h2 class="section-header__title">All Services</h2>
+      </div>
+      <div class="grid-3">
+        {site.services.map(s => (
+          <a href={`/services/${s.slug}`} class="card service-card">
+            <span class="card__icon">{s.icon}</span>
+            <h3 class="card__title">{s.name}</h3>
+            <p class="card__desc">{s.shortDesc}</p>
+            <span class="card__link">Learn More →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <div class="container">
+      <h2 class="cta-strip__title">Ready to Get It Done?</h2>
+      <p class="cta-strip__desc">Call or text for a free estimate. We respond fast — usually same day. No pitch, no pressure, just a straight answer.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="/contact" class="btn btn--primary btn--lg">Get a Free Estimate</a>
+        <a href={`tel:${site.brand.phonePlain}`} class="btn btn--outline btn--lg" style="border-color:var(--color-bg);color:var(--color-bg)">📞 {site.brand.phone}</a>
+      </div>
+    </div>
+  </div>
+
+</Base>
+
+<style>
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .about-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.about-content__title {
+  font-size: var(--text-h2);
+  color: var(--color-text-dark);
+  margin-bottom: 1.5rem;
+}
+
+.about-content p {
+  color: var(--color-text-muted-dark);
+  margin-bottom: 1.25rem;
+}
+
+.about-phones {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.about-photos__main {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1rem;
+}
+
+.about-photos__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.about-photos__row img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.areas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.area-chip {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background: var(--color-surface-dark);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.area-chip:hover {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  border-color: var(--color-primary);
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.card__link {
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: auto;
+}
+</style>

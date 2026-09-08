@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+const schema=[{"@context":"https://schema.org","@type":"Service","name":"Junk Removal San Antonio TX","provider":{"@type":"LandscapingBusiness","name":site.brand.name,"telephone":site.brand.phone},"areaServed":site.areas.map(a=>({"@type":"City","name":a.name,"addressRegion":"TX"})),"serviceType":"Junk Removal","description":"Full-service junk removal in San Antonio TX for homes, garages, and properties. Fast, professional, and affordable. Free estimates."},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":site.brand.siteUrl},{"@type":"ListItem","position":2,"name":"Services","item":`${site.brand.siteUrl}/services`},{"@type":"ListItem","position":3,"name":"Junk Removal","item":`${site.brand.siteUrl}/services/junk-removal`}]}];
+---
+<Base title="Junk Removal San Antonio TX" description="Fast, professional junk removal in San Antonio TX. Homes, garages, yards, and properties of any size. No job too big. Free estimates. Call (210) 997-7525." schema={schema} canonicalPath="/services/junk-removal">
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="/">Home</a><span class="breadcrumb__sep">›</span><a href="/services">Services</a><span class="breadcrumb__sep">›</span><span>Junk Removal</span></nav>
+      <span class="page-hero__eyebrow">Junk Removal</span>
+      <h1 class="page-hero__title">Junk Removal San Antonio, TX</h1>
+      <p class="page-hero__desc">Point at it and we'll remove it. Garages, yards, sheds, rental properties — Elite clears it out fast, professionally, and at a price that makes sense.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap"><a href="/contact" class="btn btn--primary">Get a Free Estimate</a><a href={`tel:${site.brand.phonePlain}`} class="btn btn--outline-white">📞 {site.brand.phone}</a></div>
+    </div>
+  </div>
+  <section class="section section--surface">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <h2 style="margin-bottom:1rem">Point at It. We'll Handle It.</h2>
+          <p>Whether it's a garage full of old furniture, a backyard piled with debris, or a rental property that needs a full cleanout before new tenants — Elite shows up with the crew and the truck to get it done in one visit.</p>
+          <p>We serve homeowners, property managers, estate executors, and real estate agents preparing homes for sale. Fast scheduling, fair pricing, no hidden fees.</p>
+          <ul class="check-list" style="margin-top:1.5rem">
+            <li>Furniture, appliances, and household items</li>
+            <li>Garage and shed cleanouts</li>
+            <li>Yard debris and outdoor junk</li>
+            <li>Rental property cleanouts between tenants</li>
+            <li>Estate and foreclosure cleanouts</li>
+            <li>Construction and renovation debris</li>
+            <li>Same-day availability for urgent situations</li>
+          </ul>
+        </div>
+        <div><img src="/images/work-3.jpg" alt="Junk removal and cleanout service in San Antonio" style="width:100%;height:400px;object-fit:cover;border-radius:16px" /></div>
+      </div>
+    </div>
+  </section>
+  <div class="cta-strip">
+    <div class="container">
+      <h2 class="cta-strip__title">Need It Gone Fast?</h2>
+      <p class="cta-strip__desc">Call or text. We respond same day and can often be there within 24 hours.</p>
+      <a href={`tel:${site.brand.phonePlain}`} class="btn btn--primary btn--lg">📞 {site.brand.phone}</a>
+    </div>
+  </div>
+</Base>
+<style>.two-col{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center}@media(min-width:768px){.two-col{grid-template-columns:1fr 1fr}}</style>
