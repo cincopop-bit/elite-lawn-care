@@ -45,7 +45,7 @@ const schema = [
           <h1 class="hero__title">We Show Up.<br />We Do the Work.<br /><span class="text-green">You Relax.</span></h1>
         </div>
         <div>
-          <p class="hero__desc">Tree trimming, landscaping, haul-offs, junk removal, and same-day emergency service across San Antonio and 15 surrounding communities. One call handles it all.</p>
+          <p class="hero__desc" style="margin-top:3rem">From overgrown lots to storm cleanup, Elite handles every outdoor job homeowners and property managers need done right — and done fast. We serve San Antonio and 15 surrounding communities with same-day emergency response, free estimates, and a crew that actually shows up when they say they will. Tree trimming, landscaping, haul-offs, junk removal — one call handles it all.</p>
           <div class="hero__ctas">
             <a href="/contact" class="btn btn--primary btn--lg">Get a Free Estimate</a>
             <a href={`tel:${site.brand.phonePlain}`} class="btn btn--outline-white btn--lg">📞 {site.brand.phone}</a>
@@ -181,10 +181,10 @@ const schema = [
 <style>
 /* HERO */
 .hero__logo {
-  width: 420px;
-  max-width: 90%;
+  width: 380px;
+  max-width: 100%;
   height: auto;
-  margin: 0 auto 2rem;
+  margin-bottom: 0.4rem;
   display: block;
 }
 
@@ -193,6 +193,13 @@ const schema = [
   grid-template-columns: 1fr;
   gap: 2rem;
   align-items: center;
+}
+
+.hero__split > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -229,12 +236,12 @@ const schema = [
 .hero__content {
   position: relative;
   z-index: 1;
-  padding: 3.5rem 2rem;
+  padding: 1.5rem 2rem;
   width: 100%;
 }
 
 @media (min-width: 768px) {
-  .hero__content { padding: 3.5rem 3rem; }
+  .hero__content { padding: 1.5rem 3rem; }
 }
 
 .hero__eyebrow {
@@ -255,7 +262,8 @@ const schema = [
 }
 
 .hero__desc {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  line-height: 1.8;
   color: var(--color-text-muted);
   margin-bottom: 2rem;
   max-width: 560px;
@@ -264,7 +272,7 @@ const schema = [
 .hero__ctas {
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   margin-bottom: 1.5rem;
 }
 
