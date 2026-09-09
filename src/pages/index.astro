@@ -236,8 +236,9 @@ const schema = [
 .hero__content {
   position: relative;
   z-index: 1;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 1rem;
   width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
@@ -255,7 +256,7 @@ const schema = [
 }
 
 .hero__title {
-  font-size: var(--text-hero);
+  font-size: clamp(2rem, 8vw, var(--text-hero));
   color: var(--color-text-light);
   margin-bottom: 1.25rem;
   line-height: 1.1;
@@ -271,9 +272,13 @@ const schema = [
 
 .hero__ctas {
   display: flex;
-  gap: 1rem;
-  flex-wrap: nowrap;
+  gap: 0.75rem;
+  flex-wrap: wrap;
   margin-bottom: 1.5rem;
+}
+
+@media (min-width: 480px) {
+  .hero__ctas { flex-wrap: nowrap; }
 }
 
 .hero__trust {
