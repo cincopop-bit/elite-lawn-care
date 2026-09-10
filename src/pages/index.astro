@@ -94,19 +94,17 @@ const schema = [
   <section class="section section--dark">
     <div class="container">
       <div class="grid-2 why-grid">
-        <div class="why-photos">
-          <div class="why-photos__main">
-            <div class="why-photo-placeholder"></div>
-          </div>
-          <div class="why-photos__secondary">
-            <div class="why-photo-placeholder"></div>
-          </div>
-        </div>
         <div class="why-content">
           <span class="section-header__eyebrow">Why Elite</span>
           <h2 style="color:var(--color-text-light);margin-bottom:1rem">We Show Up.<br /><span class="text-green">Every Time.</span></h2>
           <p style="color:var(--color-text-muted);margin-bottom:1.5rem">We built Elite on a simple promise — be the crew that actually shows up, does the job right, and leaves the property looking better than we found it. No games, no excuses.</p>
-          <ul class="check-list" style="color:var(--color-text-muted)">
+          <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+            <a href="/about" class="btn btn--outline">Our Story</a>
+            <a href={`tel:${site.brand.phonePlain}`} class="btn btn--primary">📞 Call Now</a>
+          </div>
+        </div>
+        <div class="why-bullets">
+          <ul class="check-list check-list--large">
             <li>Serving San Antonio and 15 surrounding communities</li>
             <li>Same-day availability for emergency calls</li>
             <li>Residential and commercial property managers</li>
@@ -114,10 +112,6 @@ const schema = [
             <li>Free, no-obligation estimates</li>
             <li>Two lines — someone always answers</li>
           </ul>
-          <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
-            <a href="/about" class="btn btn--outline">Our Story</a>
-            <a href={`tel:${site.brand.phonePlain}`} class="btn btn--primary">📞 Call Now</a>
-          </div>
         </div>
       </div>
     </div>
@@ -138,23 +132,6 @@ const schema = [
       </div>
       <div class="text-center" style="margin-top:2.5rem">
         <a href="/areas" class="btn btn--outline">All Service Areas</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORK GALLERY -->
-  <section class="section section--darker">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-header__eyebrow">Real Work</span>
-        <h2 class="section-header__title">See What We Do</h2>
-      </div>
-      <div class="gallery-grid">
-        <div class="gallery-placeholder"></div>
-        <div class="gallery-placeholder"></div>
-        <div class="gallery-placeholder"></div>
-        <div class="gallery-placeholder"></div>
-        <div class="gallery-placeholder"></div>
       </div>
     </div>
   </section>
@@ -289,25 +266,21 @@ const schema = [
   gap: 4rem;
 }
 
-.why-photos {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+/* WHY BULLETS */
+.why-bullets {
+  display: flex;
+  align-items: center;
 }
 
-.why-photos__main {
-  grid-column: 1 / -1;
+.check-list--large li {
+  font-size: 1.1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--color-border-dark);
+  color: var(--color-text-muted);
 }
 
-.why-photos img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-}
-
-.why-photos__main img {
-  height: 300px;
+.check-list--large li:last-child {
+  border-bottom: none;
 }
 
 /* AREAS GRID */
@@ -338,49 +311,5 @@ const schema = [
   background: var(--color-primary);
   color: var(--color-bg);
   border-color: var(--color-primary);
-}
-
-/* GALLERY */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-}
-
-@media (min-width: 768px) {
-  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-.gallery-img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: var(--radius-md);
-  transition: transform var(--transition);
-}
-
-.gallery-img:hover { transform: scale(1.02); }
-
-/* PLACEHOLDERS (no-photo mode) */
-.gallery-placeholder {
-  width: 100%;
-  height: 220px;
-  background: var(--color-surface-dark);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border-dark);
-}
-
-.why-photo-placeholder {
-  width: 100%;
-  height: 100%;
-  min-height: 200px;
-  background: var(--color-surface-dark);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-dark);
-}
-
-@media (min-width: 768px) {
-  .why-photos img { height: 260px; }
-  .why-photos__main img { height: 360px; }
 }
 </style>
