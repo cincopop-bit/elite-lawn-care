@@ -529,3 +529,16 @@ button:focus-visible {
 .gap-6 { gap: var(--space-6); }
 .flex-wrap { flex-wrap: wrap; }
 .justify-center { justify-content: center; }
+
+/* === NO-PHOTO MODE — delete these lines when real photos are ready === */
+.page-hero img,
+section img,
+.gallery-img,
+.why-photo-placeholder,
+.why-photos {
+  display: none;
+}
+
+img.hero__logo {
+  display: block !important;
+}
