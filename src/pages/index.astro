@@ -33,10 +33,6 @@ const schema = [
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero__bg">
-      <img src="/images/work-4.jpg" alt="Professional lawn care in San Antonio" class="hero__photo" />
-      <div class="hero__overlay"></div>
-    </div>
     <div class="container hero__content">
       <div class="hero__split">
         <div>
@@ -100,10 +96,10 @@ const schema = [
       <div class="grid-2 why-grid">
         <div class="why-photos">
           <div class="why-photos__main">
-            <img src="/images/work-1.jpg" alt="Trimmed shrubs and landscaping in San Antonio backyard" />
+            <div class="why-photo-placeholder"></div>
           </div>
           <div class="why-photos__secondary">
-            <img src="/images/work-2.jpg" alt="Clean hedge trimming along fence line" />
+            <div class="why-photo-placeholder"></div>
           </div>
         </div>
         <div class="why-content">
@@ -154,11 +150,11 @@ const schema = [
         <h2 class="section-header__title">See What We Do</h2>
       </div>
       <div class="gallery-grid">
-        <img src="/images/work-1.jpg" alt="Landscaping and shrub trimming in San Antonio" class="gallery-img" />
-        <img src="/images/work-2.jpg" alt="Hedge trimming along privacy fence" class="gallery-img" />
-        <img src="/images/work-3.jpg" alt="Large green lawn ready for mowing" class="gallery-img" />
-        <img src="/images/work-4.jpg" alt="Lush mowed lawn in San Antonio backyard" class="gallery-img" />
-        <img src="/images/work-5.jpg" alt="Clean backyard after Elite lawn service" class="gallery-img" />
+        <div class="gallery-placeholder"></div>
+        <div class="gallery-placeholder"></div>
+        <div class="gallery-placeholder"></div>
+        <div class="gallery-placeholder"></div>
+        <div class="gallery-placeholder"></div>
       </div>
     </div>
   </section>
@@ -212,25 +208,7 @@ const schema = [
   display: flex;
   align-items: center;
   overflow: hidden;
-}
-
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero__photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.7) 60%, rgba(10,10,10,0.4) 100%);
+  background: var(--color-bg);
 }
 
 .hero__content {
@@ -382,6 +360,24 @@ const schema = [
 }
 
 .gallery-img:hover { transform: scale(1.02); }
+
+/* PLACEHOLDERS (no-photo mode) */
+.gallery-placeholder {
+  width: 100%;
+  height: 220px;
+  background: var(--color-surface-dark);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-dark);
+}
+
+.why-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  background: var(--color-surface-dark);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-dark);
+}
 
 @media (min-width: 768px) {
   .why-photos img { height: 260px; }
